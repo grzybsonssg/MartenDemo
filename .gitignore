@@ -2,6 +2,6 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/ToDoList.Core/ToDoList.Core/bin
-/ToDoList.Core/ToDoList.Core/obj
-/ToDoList.Core/.vs
+/*/*/bin
+/*/*/obj
+/*/.vs
