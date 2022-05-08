@@ -7,21 +7,24 @@ public class ToDoList
     public int Id { get; private set; }
     public string Name { get; private set; }
     public int UserId { get; private set; }
+    public DateTime DueDate { get; private set; }
     public List<ToDoTask> Tasks { get; private set; } = new List<ToDoTask>();
 
     [JsonConstructor]
-    protected ToDoList(int id, string name, int userId, List<ToDoTask> tasks)
+    protected ToDoList(int id, string name, int userId, DateTime dueDate, List<ToDoTask> tasks)
     {
         Id = id;
         Name = name;
         UserId = userId;
         Tasks = tasks;
+        DueDate = dueDate;
     }
 
-    public ToDoList(string name, int userId, IEnumerable<string> initialTasks)
+    public ToDoList(string name, int userId, DateTime dueDate, IEnumerable<string> initialTasks)
     {
         this.Name = name;
         this.UserId = userId;
+        this.DueDate = dueDate;
         this.Tasks = initialTasks.Select(task => new ToDoTask { Name = task }).ToList();
     }
 
@@ -39,6 +42,7 @@ public class ToDoList
     public static ToDoList CreateWorkDayToDoList() => new ToDoList(
         "Dzień w pracy",
         6502,
+        DateTime.Now.AddDays(Random.Shared.Next(14)),
         new[]
         {
             "Nie zaspać na daily",
@@ -50,6 +54,7 @@ public class ToDoList
     public static ToDoList CreateWeekendToDoList() => new ToDoList(
         "Weekend",
         6502,
+        DateTime.Now.AddDays(Random.Shared.Next(14)),
         new[]
         {
             "Wyspać się",
@@ -60,6 +65,7 @@ public class ToDoList
     public static ToDoList CreateBossToDoList() => new ToDoList(
         "Weekend",
         18,
+        DateTime.Now.AddDays(Random.Shared.Next(14)),
         new[]
         {
             "Podbić kolejne rynki",

@@ -75,16 +75,15 @@ using (var querySession = documentStore.QuerySession())
     #endregion
 
     #region Include
-    var includedUsers = new Dictionary<int, User>();
-    var allLists = await querySession.Query<ToDoList>()
-        .Include(e => e.UserId, includedUsers)
-        .ToListAsync();
+    //var includedUsers = new Dictionary<int, User>();
+    //var allLists = await querySession.Query<ToDoList>()
+    //    .Include(e => e.UserId, includedUsers)
+    //    .ToListAsync();
 
-    foreach (var list in allLists)
-    {
-        Console.WriteLine($"{list.Id} \"{list.Name}\", Owner {includedUsers[list.UserId]}");
-    }
-
+    //foreach (var list in allLists)
+    //{
+    //    Console.WriteLine($"{list.Id} \"{list.Name}\", Owner {includedUsers[list.UserId]}");
+    //}
     #endregion
 }
 #endregion

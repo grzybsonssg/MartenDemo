@@ -12,10 +12,16 @@ internal class MartenFactory
             configure.DatabaseSchemaName = "todo";
             configure.AutoCreateSchemaObjects = Weasel.Core.AutoCreate.All;
 
-            // opcjonalne
             configure.RegisterDocumentType<ToDoList>();
-
             configure.Schema.For<User>().IdStrategy(new NoOpIdGeneration());
+
+            #region Index
+            //configure.Schema.For<ToDoList>().Index(e => e.UserId);
+            #endregion
+
+            #region Duplicated field
+            //configure.Schema.For<ToDoList>().Duplicate(e => e.DueDate);
+            #endregion region
         });
     }
 }
