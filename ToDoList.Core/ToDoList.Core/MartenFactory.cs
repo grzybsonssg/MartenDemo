@@ -1,4 +1,5 @@
 ﻿using Marten;
+using Marten.Schema.Identity;
 
 namespace SimpleToDoList.Core;
 
@@ -13,6 +14,8 @@ internal class MartenFactory
 
             // opcjonalne
             configure.RegisterDocumentType<ToDoList>();
+
+            configure.Schema.For<User>().IdStrategy(new NoOpIdGeneration());
         });
     }
 }

@@ -29,17 +29,59 @@ public class ToDoList
 
     public override string ToString()
     {
-        var s = $"Name: {Name}\r\nUserId: {UserId}\r\n";
+        var s = $"ID: {Id}\r\nName: {Name}\r\nUserId: {UserId}\r\n";
         foreach (var task in Tasks)
             s += $"* {task}\r\n";
         return s;
     }
+
+    #region Example data
+    public static ToDoList CreateWorkDayToDoList() => new ToDoList(
+        "Dzień w pracy",
+        6502,
+        new[]
+        {
+            "Nie zaspać na daily",
+            "Rozpykać koszyk",
+            "Odezwać sie na refinemencie",
+            "Pomarudzić na XSynci"
+        });
+
+    public static ToDoList CreateWeekendToDoList() => new ToDoList(
+        "Weekend",
+        6502,
+        new[]
+        {
+            "Wyspać się",
+            "Pozdzierać kolana na skałach",
+            "Zrobić ognisko %%%",
+        });
+
+    public static ToDoList CreateBossToDoList() => new ToDoList(
+        "Weekend",
+        18,
+        new[]
+        {
+            "Podbić kolejne rynki",
+            "Zarobić więcej $$$",
+            "Wygrać puchar polski",
+        });
+    #endregion
 }
 
 public class ToDoTask
 {
     public string Name { get; init; }
     public bool IsDone { get; private set; }
+
+    [JsonConstructor]
+    protected ToDoTask(string name, bool isDone)
+    {
+        Name = name;
+        IsDone = isDone;
+    }
+
+    public ToDoTask() { }
 
     public void Done() => IsDone = true;
 
