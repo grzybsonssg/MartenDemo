@@ -35,6 +35,7 @@ using (var session = documentStore.OpenSession())
     session.Events.Append(basketId,
         new ProductCountChanged("C014889", 2),
         new ProductRemoved("C021698"),
+        new ProductAdded("C012294", 1, 20.03M),
         new DiscountApplied(10),
         new BasketClosed("123456789"));
 
@@ -51,7 +52,7 @@ using (var session = documentStore.OpenSession())
 #endregion
 
 #region Live aggregate
-using (var session = documentStore.OpenSession())
+using (var session = documentStore.QuerySession())
 {
     var basket = await session.Events.AggregateStreamAsync<Basket>(basketId);
     Console.WriteLine(basket);

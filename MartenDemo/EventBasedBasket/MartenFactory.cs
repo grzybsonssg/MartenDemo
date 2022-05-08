@@ -19,6 +19,8 @@ internal static class MartenFactory
             configure.Events.AddEventType(typeof(ProductRemoved));
             configure.Events.AddEventType(typeof(DiscountApplied));
             configure.Events.AddEventType(typeof(BasketClosed));
+
+            configure.Projections.SelfAggregate<Basket>(Marten.Events.Projections.ProjectionLifecycle.Inline);
         });
     }
 }
