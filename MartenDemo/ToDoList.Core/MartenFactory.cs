@@ -22,6 +22,10 @@ internal class MartenFactory
             #region Duplicated field
             //configure.Schema.For<ToDoList>().Duplicate(e => e.DueDate);
             #endregion region
+
+            #region Concurrency
+            //configure.Schema.For<ToDoList>().UseOptimisticConcurrency(true);
+            #endregion
         });
     }
 }
